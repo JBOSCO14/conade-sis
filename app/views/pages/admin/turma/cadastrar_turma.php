@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-3">
             <label for="turno">Turno</label>
-            <select name="turno" id="turno" class="form-control">
+            <select name="turno" id="turno" class="form-control" required>
                 <option value="">selecione</option>
                 <option value="MANHA">MANHÃ</option>
                 <option value="TARDE">TARDE</option>
@@ -19,7 +19,7 @@
         <div class="row">
         <div class="col-md-4">
             <label for="nivel">Nível</label>
-            <select name="nivel" id="nivel" class="form-control">
+            <select name="nivel" id="nivel" class="form-control" required>
                 <option value="">selecione</option>
                 <option value="EDUCACAO INFANTIL">EDUCAÇÃO INFANTIL</option>
                 <option value="ENSINO FUNDAMENTAL">ENSINO FUNDAMENTAL</option>
@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-4">
             <label for="etapa">Etapa</label>
-            <select name="etapa" id="etapa" class="form-control">
+            <select name="etapa" id="etapa" class="form-control" required>
                 <option value="">selecione</option>
                 <option value="EDUCACAO INFANTIL">EDUCAÇÃO INFANTIL</option>
                 <option value="ANOS INICIAIS">ANOS INICIAIS</option>
@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-4">
             <label for="modalidade">Modalidade</label>
-            <select name="modalidade" id="modalidade" class="form-control">
+            <select name="modalidade" id="modalidade" class="form-control" required>
                 <option value="ENSINO REGULAR">ENSINO REGULAR</option>
             </select>
         </div>

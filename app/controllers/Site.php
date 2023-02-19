@@ -13,4 +13,8 @@ class Site {
         View::render('pages/admin/painel/painel_cadastro');
     }
 
+    public function painelConsulta(){
+        View::render('pages/admin/painel/painel_consulta');
+    }
+
 }

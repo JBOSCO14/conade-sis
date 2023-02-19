@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="<?=URL?>/site/painelCadastro/">Cadastro</a>
-                    <a class="nav-link active" aria-current="page" href="">Consulta</a>
+                    <a class="nav-link active" aria-current="page" href="<?=URL?>/site/painelConsulta/">Consulta</a>
                     <a class="nav-link active" aria-current="page" href="#">Acadêmico</a>
                     <a class="nav-link active" aria-current="page" href="#">Relatório</a>
                     <a class="nav-link active" aria-current="page" href="#">Sair</a>

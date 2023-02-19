@@ -17,10 +17,10 @@ $dados = AlunoDao::getOferta();
         </div>
         <div class="col-md-2">
             <label>Sexo</label>
-            <select name="sexo" id="sexo" class="form-control">
+            <select name="sexo" id="sexo" class="form-control" required>
                 <option value="">selecione</option>
-                <option value="M">M</option>
-                <option value="F">F</option>
+                <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMININO">FEMININO</option>
             </select>
         </div>
         <div class="col-md-2">
@@ -42,7 +42,7 @@ $dados = AlunoDao::getOferta();
         </div>
         <div class="col-md-2">
             <label>UF</label>
-            <select name="uf_nat" id="uf_nat" class="form-control">
+            <select name="uf_nat" id="uf_nat" class="form-control" required>
                 <option value="">selecione</option>
                 <option value="CE">CE</option>
                 <option value="AC">AC</option>
@@ -75,7 +75,7 @@ $dados = AlunoDao::getOferta();
         </div>
         <div class="col-md-2">
             <label>Cor/Raça</label>
-            <select name="cor_raca" id="cor_raca" class="form-control">
+            <select name="cor_raca" id="cor_raca" class="form-control" required>
                 <option value="">selecione</option>
                 <option value="NAO DECLARADA">NAO DECLARADA</option>
                 <option value="BRANCA">BRANCA</option>
@@ -100,7 +100,7 @@ $dados = AlunoDao::getOferta();
     <div class="row">
         <div class="col-md-2">
             <label>Atendimento AEE</label>
-            <select class="form-control" name="aluno_aee" id="aluno_aee">
+            <select class="form-control" name="aluno_aee" id="aluno_aee" required>
                 <option value="">selecione</option>
                 <option value="NAO">NÃO</option>
                 <option value="SIM">SIM</option>
@@ -142,7 +142,7 @@ $dados = AlunoDao::getOferta();
             </div>
             <div class="col-md-2">
             <label>UF</label>
-            <select name="uf_cid" id="uf_cid" class="form-control">
+            <select name="uf_cid" id="uf_cid" class="form-control" required>
                 <option value="">selecione</option>
                 <option value="CE">CE</option>
                 <option value="AC">AC</option>
@@ -205,7 +205,7 @@ $dados = AlunoDao::getOferta();
             </div>
             <div class="col-md-6">
                 <label>Recebe Bolsa Família</label>
-                <select name="bolsa" id="bolsa" class="form-control">
+                <select name="bolsa" id="bolsa" class="form-control" required>
                     <option value="">selecione</option>
                     <option value="SIM">SIM</option>
                     <option value="NAO">NÃO</option>
@@ -220,7 +220,7 @@ $dados = AlunoDao::getOferta();
             </div>
             <div class="col-md-3">
                 <label>Restrição alimentar</label>
-                <select name="restricao" id="restricao" class="form-control">
+                <select name="restricao" id="restricao" class="form-control" required>
                     <option value="">selecione</option>
                     <option value="SIM">SIM</option>
                     <option value="NAO">NÃO</option>
@@ -246,17 +246,17 @@ $dados = AlunoDao::getOferta();
         <div class="row">
             <div class="col-md-6">
                 <label>Resultado anterior</label>
-                <select name="res_anterior" id="res_anterior" class="form-control">
+                <select name="res_anterior" id="res_anterior" class="form-control" required>
                     <option value="">selecione</option>
-                    <option value="Apr">A - APROVADO</option>
-                    <option value="Rep">R - REPROVADO</option>
-                    <option value="Tr">T - TRANSFERIDO</option>
-                    <option value="Ds">D - DEIXOU DE FREQUENTAR</option>
+                    <option value="APR">A - APROVADO</option>
+                    <option value="REP">R - REPROVADO</option>
+                    <option value="TRF">T - TRANSFERIDO</option>
+                    <option value="DES">D - DEIXOU DE FREQUENTAR</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label>Situação atual</label>
-                <select name="sit_atual" id="sit_atual" class="form-control">
+                <select name="sit_atual" id="sit_atual" class="form-control" required>
                 <option value="C">C - CURSANDO</option>
                 <option value="T">T - TRANSFERIDO</option>
                 <option value="D">D - DEIXOU DE FREQUENTAR</option>
@@ -267,7 +267,7 @@ $dados = AlunoDao::getOferta();
         <div class="row">
             <div class="col-md-8">
                 <label>Oferta Escolar</label>
-                <select name="oferta" id="oferta" class="form-control">
+                <select name="oferta" id="oferta" class="form-control" required>
                 <option value="">selecione</option>
                 <?php foreach ($dados as $row) { ?>
                     <option value="<?php echo $row['id']; ?>"><?php echo $row['oferta']; ?></option>

@@ -122,4 +122,5 @@ class TurmaDao{
         $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
         return $resultado;
     }
+
 }
