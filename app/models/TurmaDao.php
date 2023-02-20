@@ -19,8 +19,39 @@ class TurmaDao{
         $count = $query->rowCount();
         if($count > 0){
             $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
+            foreach ($resultado as $row) {
+                $id_turma = $row['id'];
+                self::selectTurmaById($id_turma);
+            }
             return $resultado;
         }
+    }
+
+    private static function selectTurmaById($id_turma){
+
+        $sql = "SELECT * FROM enturmacao WHERE id_turma = :id_turma";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':id_turma', $id_turma);
+        $query->execute();
+        $count = $query->rowCount();
+        if($count > 0){
+            self::updateCountTurma($id_turma,$count);
+        }
+    }
+
+    private static function updateCountTurma($id_turma, $count){
+
+        $sql = "UPDATE turma SET enturmados = :enturmados WHERE id = :id";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':enturmados', $count);
+        $query->bindValue(':id', $id_turma);
+        $query->execute();
     }
 
     public static function create(){

@@ -1,11 +1,17 @@
-<?php
-header ("Expires: Mon, 18 Nov 1985 18:00:00 GMT");
-header ("Last-Modified: ".gmdate("D,d M YH:i:s")." GMT");
+<?php 
+if($dados){
+    foreach ($dados as $data) { 
+        $desc_turma = $data['nome_turma'];
+    }
+}
+$file = "document_" . $desc_turma . "_" . date("Y_m_d_H_i_s") . ".xls";
+header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header ("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
 header ("Cache-Control: no-cache, must-revalidate");
 header ("Pragma: no-cache");
 header ("Content-type: application/x-msexcel");
-header ("Content-Disposition: attachment; filename=Dados.xls");
-header ("Content-Type: text/html; charset=utf-8");
+header ("Content-Disposition: attachment; filename=\"{$file}\"" );
+header ("Content-Description: PHP Generated Data" );
 ?>
 <div class="container">
 <style>
@@ -18,6 +24,7 @@ header ("Content-Type: text/html; charset=utf-8");
         thead th{
             border: solid 1px;
             background: #F0FFF0;
+            text-align: center;
         }
 
         tbody{
@@ -69,11 +76,16 @@ header ("Content-Type: text/html; charset=utf-8");
             $anoletivo = $data['anoletivo'];
         }
     ?>
+    <h3><?php echo utf8_decode("Escola Municipal de Ensino Fundamental São Bernardo - INEP: 23058919"); ?></h3>
+    <h3><?php echo utf8_decode("Frequência de sala");?> - Ano letivo: <?php echo $anoletivo; ?></h3>
+    <div>
+    Turma: <?php echo utf8_decode($nomeTurma); ?> - Turno: <?php echo $turno; ?> - Nome do professor: ______________________________________________  -  <?php echo utf8_decode("Mês:");?> ________________
+    </div>
     <br>
     <table>
         <thead>
            <tr>
-            <th class="wdt-nr">N</th>
+            <th class="wdt-nr">No</th>
             <th class="wdt-nome">Nome do aluno</th>
             <th class="wdt-fd"></th>
             <th class="wdt-fd"></th>
@@ -149,6 +161,6 @@ header ("Content-Type: text/html; charset=utf-8");
         </tbody>
     </table>
     <div>
-    <?php } ?>
+    <?php }  exit; ?>
     </div>
 </div>

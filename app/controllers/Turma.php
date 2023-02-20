@@ -63,4 +63,10 @@ class Turma{
         $dados = TurmaDao::getTurmaId($id);
         View::render('pages/admin/turma/remover_turma',$dados);
     }
+
+    public function listarExcel(){
+        $dados = array();
+        $dados = TurmaDao::read();
+        View::render('pages/admin/turma/listar_turma_xls', $dados);
+    }
 }

@@ -23,7 +23,7 @@ class ConsultaDao{
         $id_turma = filter_input(INPUT_POST, 'id_turma', FILTER_SANITIZE_NUMBER_INT);
 
         $sql = "SELECT
-        ent.id,
+        ent.id_ent,
         ent.id_aluno,
         ent.id_turma,
         ent.numero,
@@ -94,6 +94,7 @@ class ConsultaDao{
         $res = $query->execute();
 
         if($res) {
+            self::alteraStatusAlunos($id);
             return true;
         }else{
             throw new \PDOException("Error Processing Request");
@@ -104,7 +105,7 @@ class ConsultaDao{
     public static function reloadTurmaId($id){
 
         $sql = "SELECT
-        ent.id,
+        ent.id_ent,
         ent.id_aluno,
         ent.id_turma,
         ent.numero,
@@ -149,7 +150,7 @@ class ConsultaDao{
         ent.anoletivo FROM enturmacao ent
         INNER JOIN cad_aluno alu ON ent.id_aluno = alu.id
         INNER JOIN turma tur ON ent.id_turma = tur.id
-        WHERE ent.id_turma = :id_turma ORDER BY ent.numero";
+        WHERE ent.id_turma = :id_turma ORDER BY ent.numero, alu.nome";
 
         $con = Database::getConnection();
 

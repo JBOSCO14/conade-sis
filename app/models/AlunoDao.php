@@ -128,6 +128,11 @@ class AlunoDao{
         $ddd2 = mb_strtoupper(filter_input(INPUT_POST,'ddd2', FILTER_SANITIZE_SPECIAL_CHARS));
         $contato2 = mb_strtoupper(filter_input(INPUT_POST,'contato2', FILTER_SANITIZE_SPECIAL_CHARS));
         $email = mb_strtolower(filter_input(INPUT_POST,'email', FILTER_SANITIZE_SPECIAL_CHARS));
+        if($email == null){
+            $email = str_replace(' ','',mb_strtolower($nome) . rand() . "@". rand(). ".com");
+        }else{
+            $email = mb_strtolower(filter_input(INPUT_POST,'email', FILTER_SANITIZE_SPECIAL_CHARS));
+        }
         $nis = mb_strtoupper(filter_input(INPUT_POST,'nis', FILTER_SANITIZE_SPECIAL_CHARS));
         $bolsa = mb_strtoupper(filter_input(INPUT_POST,'bolsa', FILTER_SANITIZE_SPECIAL_CHARS));
         $restricao = mb_strtoupper(filter_input(INPUT_POST,'restricao', FILTER_SANITIZE_SPECIAL_CHARS));
@@ -139,6 +144,7 @@ class AlunoDao{
         $res_anterior = filter_input(INPUT_POST,'res_anterior', FILTER_SANITIZE_SPECIAL_CHARS);
         $sit_atual = filter_input(INPUT_POST,'sit_atual', FILTER_SANITIZE_SPECIAL_CHARS);
         $oferta_id = mb_strtoupper(filter_input(INPUT_POST,'oferta', FILTER_SANITIZE_SPECIAL_CHARS));
+        $enturmado = filter_input(INPUT_POST,'enturmado', FILTER_SANITIZE_SPECIAL_CHARS);
         $anoletivo = date('Y');
         $datacad = date('Y-m-d H:i:s');
 
@@ -147,7 +153,7 @@ class AlunoDao{
         naturalidade = :naturalidade, uf_nat = :uf_nat, aluno_aee = :aluno_aee, tipo_aee = :tipo_aee,
         rg = :rg, cpf = :cpf, endereco = :endereco, bairro = :bairro, cep = :cep, cidade = :cidade, uf_cid = :uf_cid, ddd1 = :ddd1, contato1 = :contato1, ddd2 = :ddd2, contato2 = :contato2,
         email = :email, nis = :nis, bolsa = :bolsa, restricao = :restricao, tipo_rest = :tipo_rest, sus = :sus,
-        transp = :transp, idcenso = :idcenso, sige = :sige, res_anterior = :res_anterior, sit_atual = :sit_atual, oferta_id = :oferta_id, anoletivo = :anoletivo, datacad = :datacad WHERE id = :id";
+        transp = :transp, idcenso = :idcenso, sige = :sige, res_anterior = :res_anterior, sit_atual = :sit_atual, oferta_id = :oferta_id, enturmado = :enturmado, anoletivo = :anoletivo, datacad = :datacad WHERE id = :id";
 
         $con = Database::getConnection();
 
@@ -186,6 +192,7 @@ class AlunoDao{
         $query->bindValue(':res_anterior',$res_anterior);
         $query->bindValue(':sit_atual',$sit_atual);
         $query->bindValue(':oferta_id',$oferta_id);
+        $query->bindValue(':enturmado',$enturmado);
         $query->bindValue(':anoletivo',$anoletivo);
         $query->bindValue(':datacad',$datacad);
         $query->bindValue(':id',$id);

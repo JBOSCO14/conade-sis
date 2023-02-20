@@ -71,4 +71,27 @@ class Enturmacao {
         View::render('pages/admin/consulta/listar_turmas',$dados);
     }
 
+    public function alterarNumero(){
+        //echo "<pre>"; print_r($_GET); echo "</pre>"; exit;
+        if(isset($_GET['id_aluno'])){
+            $id = $_GET['id_aluno'];
+        }
+        $dados = array();
+        $dados = EnturmacaoDao::findAlunoById($id);
+        View::render('pages/admin/consulta/alterar_numero',$dados);
+    }
+
+    public function gravarAlteraNumero(){
+        //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
+        $id_turma = $_POST['id_turma'];
+        try {
+            EnturmacaoDao::alteraNumeroId($_POST);
+            echo '<script>alert("REGISTRO GRAVADO COM SUCESSO!");</script>';
+            echo '<script>location.href=" ' . URL . '/consulta/reloadTurma/&id_turma='.$id_turma.'"</script>';
+        } catch (\PDOException $e) {
+            echo '<script>alert(" '. $e->getMessage() . ' ");</script>'; 
+            echo '<script>location.href=" ' . URL . '/consulta/reloadTurma/&id_turma='.$id_turma.'"</script>'; 
+        }
+    }
+
 }

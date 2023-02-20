@@ -268,7 +268,7 @@ $oferta = AlunoDao::getOferta();
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <label>Oferta Escolar</label>
                 <select name="oferta" id="oferta" class="form-control">
                 <option value="<?php echo $row['oferta_id']; ?>"><?php echo $row['oferta_id']; ?></option>
@@ -280,6 +280,14 @@ $oferta = AlunoDao::getOferta();
             <div class="col-md-4">
                 <label>Ano letivo</label>
                 <input class="form-control" type="text" name="anoletivo" id="anoletivo" maxlength="4" value="<?php echo date('Y'); ?>" value="<?php echo $row['anoletivo']; ?>">
+            </div>
+            <div class="col-md-2">
+                <label>Enturmado</label>
+                <select name="enturmado" id="enturmado" class="form-control" required>
+                <option value="<?php echo $row['enturmado']; ?>"><?php echo $row['enturmado']; ?></option>
+                <option value="N">NÃO</option>
+                <option value="S">SIM</option>
+                </select>
             </div>
         </div>
 

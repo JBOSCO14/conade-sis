@@ -88,10 +88,12 @@
     foreach ($dados as $data) { 
         $nomeTurma = $data['nome_turma'];
         $idTurma = $data['id_turma'];
+        $idAluno = $data['id_aluno'];
     }
 ?>
 <a class="button1" href="<?=URL?>/consulta/consultarTurma/">Voltar</a>
-<a class="button2" href="<?=URL?>/consulta/desenturmarTodos/&cod=<?php echo $idTurma; ?>">Desemturmar todos</a>
+<a class="button2" href="<?=URL?>/consulta/confirmarDesenturmarTodos/&cod=<?php echo $idTurma; ?>">Desemturmar todos</a>
+<a class="button1" href="<?=URL?>/consulta/numerarAuto/&cod=<?php echo $idTurma; ?>">Atualizar</a>
 <div class="mt-2">
     <b>Turma: <?php echo $nomeTurma; ?></b>
     <p>Total de registros: <?php echo count($dados); ?></p>
@@ -117,6 +119,7 @@
                 <td class="td-center">
                     <a class="button3" href="<?=URL?>/consulta/VisualizarAluno/&id=<?php echo $row['id_aluno']; ?>&idTurma=<?php echo $row['id_turma']; ?>">Visualizar</a>
                     <a class="button2" href="<?=URL?>/consulta/confirmarRemover/&id=<?php echo $row['id_aluno']; ?>&idTurma=<?php echo $row['id_turma']; ?>">Remover</a>
+                    <a class="button3" href="<?=URL?>/enturmacao/alterarNumero/&id_aluno=<?php echo $row['id_aluno']; ?>">Num.</a>
                 </td>
             </tr>
             <?php } ?>
