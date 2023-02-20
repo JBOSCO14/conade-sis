@@ -67,7 +67,7 @@
     <h3>Escola Municipal de Ensino Fundamental São Bernardo - INEP: 23058919</h3>
     <h3>Frequência de sala - Ano letivo: <?php echo $anoletivo; ?></h3>
     <span>
-    Turma: <?php echo $nomeTurma; ?> - Turno: <?php echo $turno; ?> - Nome do professor: _________________________________________________  -  Mês: __________________
+    Turma: <?php echo $nomeTurma; ?> - Turno: <?php echo $turno; ?> - Nome do professor: ______________________________________________  -  Mês: ________________
     </span>
     <br>
     <table>

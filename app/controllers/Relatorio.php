@@ -37,10 +37,17 @@ class Relatorio{
         $document->loadHtml($page);
         $document->setPaper('A4', 'landscape');
         $document->render();
-        $document->stream("Frequencia_de_sala_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>true));
+        $document->stream("Frequencia_de_sala_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>false));
         //$document->stream("About.pdf", array("Attachment"=>0));
         //$fileUpload = $document->output();
         //return $fileUpload;
     }
+
+    public function exportXls(){
+        $dados = array();
+        $dados = ConsultaDao::reloadTurmaId($_GET['id_turma']);
+        View::renderPrinter('pages/admin/relatorio/freq_sala_xls',$dados);
+    }
+
 
 }

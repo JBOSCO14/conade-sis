@@ -1,10 +1,18 @@
+<?php
+header ("Expires: Mon, 18 Nov 1985 18:00:00 GMT");
+header ("Last-Modified: ".gmdate("D,d M YH:i:s")." GMT");
+header ("Cache-Control: no-cache, must-revalidate");
+header ("Pragma: no-cache");
+header ("Content-type: application/x-msexcel");
+header ("Content-Disposition: attachment; filename=Dados.xls");
+header ("Content-Type: text/html; charset=utf-8");
+?>
 <div class="container">
 <style>
         table{
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
             border: solid 1px;
-            border-collapse: collapse;
         }
 
         thead th{
@@ -12,34 +20,41 @@
             background: #F0FFF0;
         }
 
-        tbody td{
+        tbody{
             border: solid 1px;
         }
 
+        td{
+            border: solid 1px;
+        }
+
+
         .wdt-nome{
             width: 350px;
+            border: solid 1px;
         }
 
         .wdt-nr{
-            width: 30px;
+            width: 35px;
             text-align: center;
         }
 
         .wdt-fd{
             width: 15px;
+            border: solid 1px;
         }
 
         .wdt-ft{
             width: 50px;
+            border: solid 1px;
         }
 
         .txt1{
             text-align: center;
+            border: solid 1px;
         }
 
     </style>
-    <h2>Frequência de sala</h2>
-    <hr>
     <?php if(!$dados){ ?>
     <div class="alert alert-danger" role="alert">
     <b>REGISTRO NÃO LOCALIZADO!</b>
@@ -54,14 +69,11 @@
             $anoletivo = $data['anoletivo'];
         }
     ?>
-    <a class="btn btn-dark" href="<?=URL?>/relatorio/print/&id_turma=<?php echo $idTurma; ?>" target="_blank">Gerar PDF</a>
-    <a class="btn btn-dark" href="<?=URL?>/relatorio/exportXls/&id_turma=<?php echo $idTurma; ?>" target="_blank">Exportar Excel</a>
-    <a class="btn btn-secondary" href="<?=URL?>/relatorio/selecionaTurma/">Voltar</a>
-    <p>Turma: <?php echo $nomeTurma; ?> - Turno: <?php echo $turno; ?> - Ano Letivo: <?php echo $anoletivo; ?></p>
+    <br>
     <table>
         <thead>
            <tr>
-            <th class="wdt-nr">Nº</th>
+            <th class="wdt-nr">N</th>
             <th class="wdt-nome">Nome do aluno</th>
             <th class="wdt-fd"></th>
             <th class="wdt-fd"></th>
@@ -138,6 +150,5 @@
     </table>
     <div>
     <?php } ?>
-    <hr>
     </div>
 </div>
