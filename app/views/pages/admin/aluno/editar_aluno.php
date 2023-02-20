@@ -21,8 +21,8 @@ $oferta = AlunoDao::getOferta();
             <label>Sexo</label>
             <select name="sexo" id="sexo" class="form-control">
                 <option value="<?php echo $row['sexo']; ?>"><?php echo $row['sexo']; ?></option>
-                <option value="M">M</option>
-                <option value="F">F</option>
+                <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMININO">FEMININO</option>
             </select>
         </div>
         <div class="col-md-2">
@@ -250,10 +250,10 @@ $oferta = AlunoDao::getOferta();
                 <label>Resultado anterior</label>
                 <select name="res_anterior" id="res_anterior" class="form-control">
                     <option value="<?php echo $row['res_anterior']; ?>"><?php echo $row['res_anterior']; ?></option>
-                    <option value="Apr">A - APROVADO</option>
-                    <option value="Rep">R - REPROVADO</option>
-                    <option value="Tr">T - TRANSFERIDO</option>
-                    <option value="Ds">D - DEIXOU DE FREQUENTAR</option>
+                    <option value="APR">A - APROVADO</option>
+                    <option value="REP">R - REPROVADO</option>
+                    <option value="TRF">T - TRANSFERIDO</option>
+                    <option value="DES">D - DEIXOU DE FREQUENTAR</option>
                 </select>
             </div>
             <div class="col-md-6">

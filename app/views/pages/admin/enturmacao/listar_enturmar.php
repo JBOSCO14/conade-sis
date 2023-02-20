@@ -7,7 +7,7 @@ $tipoMov = $_SESSION['tipo_mov'];
 <div class="container">
     <h3>Enturmar aluno</h3>
     <hr>
-    <form action="<?=URL?>/enturmar/gravarEnturmacao/" method="post">
+    <form action="<?=URL?>/enturmacao/gravarEnturmacao/" method="post">
     <table class="table table-striped table-hover">
         <tr>
             <th>Id.</th>

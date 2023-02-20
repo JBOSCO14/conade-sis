@@ -45,11 +45,30 @@ class Enturmacao {
             $dados = $_POST['txtAluno'];
             EnturmacaoDao::createEnturmacao($dados);
             echo '<script>alert("REGISTRO GRAVADO COM SUCESSO!");</script>';
-            echo '<script>location.href=" '. URL . '/AlunoController/enturmar/"</script>';
+            echo '<script>location.href=" '. URL . '/enturmacao/buscar/"</script>';
         } catch (\PDOException $e) {
             echo '<script>alert(" '.$e->getMessage().' ");</script>';
-            echo '<script>location.href="'. URL . '/AlunoController/enturmar/"</script>';
+            echo '<script>location.href="'. URL . '/enturmacao/buscar/"</script>';
         }
+    }
+
+    public function pesqTurmaAnoLetivo(){
+        if (isset($_GET['search'])) {
+            $anoletivo = $_GET['search'];
+            $dados = array();
+            $dados = EnturmacaoDao::getTurmaAnoLetivo($anoletivo);
+            for ($i = 0; $i < count($dados); $i++) {
+            // devolvendo a linha HTML para o javascript e montar no append
+                echo "<option value='" . $dados[$i]['id'] . "' >" . $dados[$i]['nome_turma'] . "</option>";
+            }
+        }
+    }
+
+    public function buscarTurma(){
+        //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
+        $dados = array();
+        $dados = EnturmacaoDao::buscarTurmaId($_POST);
+        View::render('pages/admin/consulta/listar_turmas',$dados);
     }
 
 }

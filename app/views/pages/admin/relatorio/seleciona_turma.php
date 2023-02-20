@@ -1,7 +1,7 @@
 <div class="container">
-    <h2>Consultar Turma</h2>
+    <h2>Selecionar turma</h2>
     <hr>
-    <form action="<?=URL?>/enturmacao/buscarTurma/" method="post">
+    <form action="<?=URL?>/relatorio/getTurmaSelecionada/" method="post">
        <div class="row">
             <div class="col-md-2">
                 <label>Ano letivo</label>

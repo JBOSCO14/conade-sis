@@ -17,4 +17,8 @@ class Site {
         View::render('pages/admin/painel/painel_consulta');
     }
 
+    public function painelRelatorio(){
+        View::render('pages/admin/painel/painel_relatorio');
+    }
+
 }

@@ -18,6 +18,12 @@ class View {
         $dados;
         require_once __DIR__ . '/../views/' . $view . '.php';
         self::getFooter();
+    }
+
+    public static function renderPrinter($view, $dados = []){
+        
+        $dados;
+        require_once __DIR__ . '/../views/' . $view . '.php';
        
     }
 }
