@@ -34,13 +34,13 @@ class Relatorio{
         View::renderPrinter('pages/admin/relatorio/freq_sala_print',$dados);
         $page = ob_get_contents();
         ob_end_clean();
-        $document = new Dompdf();
-        $document->loadHtml($page);
-        $document->setPaper('A4', 'landscape');
-        $document->render();
-        $document->stream("Frequencia_de_sala_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>false));
-        //$document->stream("About.pdf", array("Attachment"=>0));
-        //$fileUpload = $document->output();
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($page);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream("Frequencia_de_sala_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>false));
+        //$dompdf->stream("About.pdf", array("Attachment"=>0));
+        //$fileUpload = $dompdf->output();
         //return $fileUpload;
     }
 
@@ -55,6 +55,8 @@ class Relatorio{
         $dados = TurmaDao::read();
         View::render('pages/admin/relatorio/listar_turma_dec', $dados);
     }
+
+    //Métodos para declarações.
 
     public function carregarListaAluno(){
         //echo "<pre>"; print_r($_GET); echo "</pre>"; exit;
@@ -74,17 +76,22 @@ class Relatorio{
     public function printDec(){
         $dados = array();
         $dados = EnturmacaoDao::selectAlunoById($_GET['id']);
+        $dompdf = new Dompdf();
+        $options = $dompdf->getOptions();
+        $options->set(array('isRemoteEnabled' => true));
+        $options->set(array('allow_url_fopen' => true));
+        $options->set('chroot', realpath($_SERVER['DOCUMENT_ROOT']));
+        $dompdf->setOptions($options);
         ob_start();
-        View::renderPrinter('pages/admin/relatorio/dec_aluno',$dados);
+        View::renderPrinter('pages/admin/relatorio/print',$dados);
         $page = ob_get_contents();
         ob_end_clean();
-        $document = new Dompdf();
-        $document->loadHtml($page);
-        $document->setPaper('A4', 'landscape');
-        $document->render();
-        $document->stream("document_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>false));
-        //$document->stream("About.pdf", array("Attachment"=>0));
-        //$fileUpload = $document->output();
+        $dompdf->loadHtml($page);
+        $dompdf->setPaper('A4', 'portait');
+        $dompdf->render();
+        $dompdf->stream("document_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>true));
+        //$dompdf->stream("About.pdf", array("Attachment"=>0));
+        //$fileUpload = $dompdf->output();
         //return $fileUpload;
     }
 

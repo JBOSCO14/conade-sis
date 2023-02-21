@@ -114,7 +114,7 @@
                 <td class="td-left"><?=$row['nome']?></td>
                 <td class="td-center"><?=$row['sit_atual']?></td>
                 <td class="td-center">
-                    <a class="button3" href="<?=URL?>/relatorio/selectAluno/&id=<?php echo $row['id_aluno']; ?>">Selecionar</a>
+                    <a class="button3" href="<?=URL?>/relatorio/printDec/&id=<?php echo $row['id_aluno']; ?>">Selecionar</a>
                 </td>
             </tr>
             <?php } ?>
