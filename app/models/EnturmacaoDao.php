@@ -329,4 +329,46 @@ class EnturmacaoDao {
         }
     }
 
+    public static function selectAlunoById($id){
+
+        $anoletivo = date('Y');
+
+        $sql = "SELECT
+        ent.id_ent,
+        ent.id_aluno,
+        ent.id_turma,
+        ent.numero,
+        ent.tipo_matricula,
+        ent.tipo_movimento,
+        ent.sit_atual,
+        ent.data_transf,
+        ent.data_mat,
+        ent.inep,
+        alu.id,
+        alu.nome,
+        alu.datanasc,
+        alu.nome_mae,
+        alu.nome_pai,
+        alu.idcenso,
+        alu.sige,
+        alu.nis,
+        tur.nome_turma,
+        tur.turno,
+        tur.nivel,
+        tur.etapa,
+        tur.modalidade,
+        ent.anoletivo FROM enturmacao ent
+        INNER JOIN cad_aluno alu ON ent.id_aluno = alu.id
+        INNER JOIN turma tur ON ent.id_turma = tur.id
+        WHERE ent.id_aluno = :id_aluno AND ent.anoletivo = :anoletivo";
+
+        $con = Database::getConnection();
+        $query = $con->prepare($sql);
+        $query->bindValue(':id_aluno', $id);
+        $query->bindValue(':anoletivo', $anoletivo);
+        $query->execute();
+        $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
+        return $resultado;
+    }
+
 }
