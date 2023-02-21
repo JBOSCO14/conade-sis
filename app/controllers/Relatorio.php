@@ -89,7 +89,7 @@ class Relatorio{
         $dompdf->loadHtml($page);
         $dompdf->setPaper('A4', 'portait');
         $dompdf->render();
-        $dompdf->stream("document_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>true));
+        $dompdf->stream("document_" . date('YmdHis') . $_GET['id'] . ".pdf", array("Attachment" =>true));
         //$dompdf->stream("About.pdf", array("Attachment"=>0));
         //$fileUpload = $dompdf->output();
         //return $fileUpload;

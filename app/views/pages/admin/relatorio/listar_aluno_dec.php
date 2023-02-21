@@ -91,7 +91,7 @@
         $idAluno = $data['id_aluno'];
     }
 ?>
-<a class="button1" href="<?=URL?>/consulta/consultarTurma/">Voltar</a>
+<a class="button1" href="<?=URL?>/relatorio/listarTurma/">Voltar</a>
     <b>Turma: <?php echo $nomeTurma; ?></b>
     <p>Total de registros: <?php echo count($dados); ?></p>
     <table class="table table-hover">
