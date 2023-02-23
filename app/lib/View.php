@@ -20,10 +20,27 @@ class View {
         self::getFooter();
     }
 
+    //Renderiza apenas impressão.
     public static function renderPrinter($view, $dados = []){
         
         $dados;
         require_once __DIR__ . '/../views/' . $view . '.php';
        
+    }
+
+    //Renderiza apenas tela de login.
+    public static function getHeaderLogin(){
+        require_once __DIR__ . '/../views/layout/header_login.php';
+    }
+
+    public static function getFooterLogin(){
+        require_once __DIR__ . '/../views/layout/footer_login.php';
+    }
+
+    public static function renderLogin($view, $dados = []){
+        self::getHeaderLogin();
+        $dados;
+        require_once __DIR__ . '/../views/' . $view . '.php';
+        self::getFooterLogin();
     }
 }
