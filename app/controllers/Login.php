@@ -7,9 +7,12 @@ use app\models\UsuarioDao;
 class Login {
 
     private static function init(){
-        if(session_start() !== PHP_SESSION_ACTIVE){
-            session_start();
-        }
+        
+        if(session_status() !== PHP_SESSION_ACTIVE){
+			//inicia a sessão.
+			session_start();
+		}
+        
     }
 
     public static function getUsuarioLogado(){
@@ -43,16 +46,16 @@ class Login {
 
    public static function requireLogin(){
         if(!self::isLogged()){
-            //View::renderLogin('login/login');
-            header('Location: '.URL.'/site/login/');
+            View::renderLogin('login/login');
+            //header('Location: '.URL.'/site/login/');
             exit;
         }
    }
 
    public static function requireLogout(){
         if(self::isLogged()){
-            //View::renderLogin('login/login');
-            header('Location: '.URL.'/site/login/');
+            View::renderLogin('login/login');
+            //header('Location: '.URL.'/site/login/');
             exit;
         }
    }
@@ -67,12 +70,13 @@ class Login {
    }
 
    public function validarLogin(){
+    //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
     try {
         UsuarioDao::checkLogin($_POST);
         echo '<script>location.href=" ' . URL . '/site/home/"</script>';
     } catch (\PDOException $e) {
-        echo '<script>alert("ERRO: USUÁRIO E/OU SENHA INCORRETOS!");</script>';
-        echo '<script>location.href=" '. URL. '/login/index/"</script>';
+        echo '<script>alert(" ' . $e->getMessage() . ' ");</script>';
+        echo '<script>location.href=" '. URL. '/site/login/"</script>';
     }
 }
 

@@ -2,6 +2,8 @@
 
 namespace app\lib;
 
+use app\controllers\Login;
+
 class View {
 
     public static function getHeader(){
@@ -9,24 +11,30 @@ class View {
     }
 
     public static function getFooter(){
+        $dados['user'] = array();
+        $dados['user'] = Login::getUsuarioLogado();
         require_once __DIR__ . '/../views/layout/footer.php';
     }
 
+    
     public static function render($view, $dados = []){
-        
         self::getHeader();
         $dados;
         require_once __DIR__ . '/../views/' . $view . '.php';
         self::getFooter();
     }
 
+
+
+
     //Renderiza apenas impressão.
     public static function renderPrinter($view, $dados = []){
-        
         $dados;
         require_once __DIR__ . '/../views/' . $view . '.php';
        
     }
+
+
 
     //Renderiza apenas tela de login.
     public static function getHeaderLogin(){
