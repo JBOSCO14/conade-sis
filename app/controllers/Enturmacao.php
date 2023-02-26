@@ -66,6 +66,7 @@ class Enturmacao {
 
     public function buscarTurma(){
         //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
+        Login::requireLogin();
         $dados = array();
         $dados = EnturmacaoDao::buscarTurmaId($_POST);
         View::render('pages/admin/consulta/listar_turmas',$dados);

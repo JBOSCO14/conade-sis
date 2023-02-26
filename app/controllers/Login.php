@@ -21,12 +21,13 @@ class Login {
         return $usuario;
     }
 
-    public static function login($id,$nome,$email){
+    public static function login($id,$nome,$email,$nivel){
         self::init();
         $_SESSION['usuario'] = [
             'id' => $id,
             'nome' => $nome,
-            'email' => $email
+            'email' => $email,
+            'nivel' => $nivel
         ];
         View::render('pages/home/home');
         exit;
@@ -78,7 +79,14 @@ class Login {
         echo '<script>alert(" ' . $e->getMessage() . ' ");</script>';
         echo '<script>location.href=" '. URL. '/site/login/"</script>';
     }
-}
+
+    }
+
+    public static function getLevelUser(){
+        $dados['user'] = array();
+        $dados['user'] = self::getUsuarioLogado();
+        return $dados['user']['nivel'];
+    }
 
     
 }

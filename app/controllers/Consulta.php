@@ -8,6 +8,7 @@ use app\models\EnturmacaoDao;
 class Consulta{
 
     public function consultarTurma(){
+        Login::requireLogin();
         View::render('pages/admin/consulta/consultar_turma');
     }
 

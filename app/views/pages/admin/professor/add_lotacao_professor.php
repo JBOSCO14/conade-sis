@@ -3,7 +3,7 @@
 use app\models\TurmaDao;
 
     $turmas = array();
-    $turmas = TurmaDao::read();
+    $turmas = TurmaDao::listarTurmaEF();
 ?>
 <div class="container">
     <h2>Adicionar lotação</h2>

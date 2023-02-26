@@ -37,10 +37,8 @@
                     <a class="btn btn-danger" href="<?=URL?>/aluno/remover/&id=<?php echo base64_encode($row['id']); ?>">X</i></a>
                 </td>
             </tr>
-            <?php } ?>
+            <?php } } ?>
         </tbody>
     </table>
-
-    <?php  } ?>
 
 </div>

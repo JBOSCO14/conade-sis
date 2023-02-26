@@ -17,14 +17,17 @@ class Site {
     }
 
     public function painelCadastro(){
+        Login::requireLogin();
         View::render('pages/admin/painel/painel_cadastro');
     }
 
     public function painelConsulta(){
+        Login::requireLogin();
         View::render('pages/admin/painel/painel_consulta');
     }
 
     public function painelRelatorio(){
+        Login::requireLogin();
         View::render('pages/admin/painel/painel_relatorio');
     }
 

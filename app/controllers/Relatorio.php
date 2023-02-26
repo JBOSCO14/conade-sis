@@ -11,6 +11,7 @@ use Dompdf\Dompdf;
 class Relatorio{
 
     public function selecionaTurma(){
+        Login::requireLogin();
         View::render('pages/admin/relatorio/frequencia/seleciona_turma');
     }
 
@@ -23,6 +24,7 @@ class Relatorio{
 
     public function getTurmaSelecionada(){
         //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
+        Login::requireLogin();
         $dados = array();
         $dados = EnturmacaoDao::buscarTurmaId($_POST);
         View::render('pages/admin/relatorio/frequencia/frequencia_sala',$dados);
@@ -52,6 +54,7 @@ class Relatorio{
     }
 
     public function listarTurma(){
+        Login::requireLogin();
         $dados = array();
         $dados = TurmaDao::read();
         View::render('pages/admin/relatorio/declaracao/listar_turma_dec', $dados);

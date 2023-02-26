@@ -7,17 +7,26 @@ use app\models\AlunoDao;
 class Aluno{
 
     public function pesquisarAluno(){
+        Login::requireLogin();
         View::render('pages/admin/aluno/pesquisar_aluno');
     }
 
     public function buscar(){
+        Login::requireLogin();
         $dados = array();
         $dados = AlunoDao::buscarAluno($_POST);
         View::render('pages/admin/aluno/listar_resultado',$dados);
     }
     
     public function cadastrar(){
+        Login::requireLogin();
+        $check = Login::getLevelUser();
+        if($check == 1){
         View::render('pages/admin/aluno/cadastrar_aluno');
+        }else{
+            echo '<script>alert("ERRO: SEU NÍVEL DE ACESSO NÃO PERMITE ESSA OPERAÇÃO!");</script>';
+            echo '<script>location.href=" '.URL.'/site/home/"</script>';
+        }
     }
 
     public function gravarCadastro(){

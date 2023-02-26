@@ -7,12 +7,14 @@ use app\models\TurmaDao;
 class Turma{
 
     public function listar(){
+        Login::requireLogin();
         $dados = array();
         $dados = TurmaDao::read();
         View::render('pages/admin/turma/listar_turma', $dados);
     }
 
     public function cadastrar(){
+        Login::requireLogin();
         View::render('pages/admin/turma/cadastrar_turma');
     }
 
@@ -68,5 +70,20 @@ class Turma{
         $dados = array();
         $dados = TurmaDao::read();
         View::render('pages/admin/turma/listar_turma_xls', $dados);
+    }
+
+    public function listFindMapTurma(){
+        Login::requireLogin();
+        $dados = array();
+        $dados = TurmaDao::listarTurmaEF();
+        View::render('pages/admin/turma/list_find_map', $dados);
+    }
+
+    public function getMapaTurma(){
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        Login::requireLogin();
+        $dados = array();
+        $dados = TurmaDao::mapTurma($id);
+        View::render('pages/admin/turma/mapa_turma',$dados);
     }
 }

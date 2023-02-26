@@ -73,7 +73,8 @@ class UsuarioDao {
                     $id = $resultado['id'];
                     $usuario = $resultado['nome'];
                     $email = $resultado['email'];
-                    Login::login($id, $usuario, $email);
+                    $nivel = $resultado['nivel'];
+                    Login::login($id, $usuario, $email, $nivel);
                 //}
                 return true;
             }else{

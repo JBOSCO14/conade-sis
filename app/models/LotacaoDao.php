@@ -59,6 +59,8 @@ class LotacaoDao {
                 $chTotal = $chMensal;
                 self::updateCargaHoraria($id_prof,$chMensal,$chSemanal,$chTotal,$chReg);
             }
+            $statusDisc = 1;
+            self::statusDisc($id_disc,$statusDisc);
             
             return true;
 
@@ -171,10 +173,12 @@ class LotacaoDao {
     }
 
     public static function findDisciplinaById($id){
-        $sql = "SELECT * FROM disciplina WHERE id_turma = :id_turma";
+        $status = 0;
+        $sql = "SELECT * FROM disciplina WHERE id_turma = :id_turma AND status = :status";
         $con = Database::getConnection();
         $query = $con->prepare($sql);
         $query->bindValue(':id_turma',$id);
+        $query->bindValue(':status',$status);
         $res = $query->execute();
         if($res){
             $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
@@ -226,6 +230,36 @@ class LotacaoDao {
         $query->bindValue(':ch_reg', $chReg);
         $query->bindValue(':ch_total', $chTotal);
         $query->bindValue(':id', $id_prof);
+        $query->execute();
+    }
+
+    public static function deleteLotacaoById($id){
+
+        $sql = "DELETE FROM lotacao WHERE id_disc = :id_disc";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':id_disc', $id);
+        $query->execute();
+
+        $count = $query->rowCount();
+        $statusDisc = 0;
+        if($count === 1){
+            self::statusDisc($id,$statusDisc);
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    private static function statusDisc($id,$status){
+        $sql = "UPDATE disciplina SET status = :status WHERE id = :id";
+        $con = Database::getConnection();
+        $query = $con->prepare($sql);
+        $query->bindValue(':status', $status);
+        $query->bindValue(':id', $id);
         $query->execute();
     }
 

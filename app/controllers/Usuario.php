@@ -7,6 +7,7 @@ use app\models\UsuarioDao;
 class Usuario {
 
     public function cadastrar(){
+        Login::requireLogin();
         View::render('login/cadastro_usuario');
     }
 

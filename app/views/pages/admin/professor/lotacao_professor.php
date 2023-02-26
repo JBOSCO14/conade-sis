@@ -1,5 +1,11 @@
 <div class="container">
-    <h2>Lotação do professor</h2>
+    <?php 
+            if($dados){
+                foreach ($dados as $lista) {
+                    $nome = $lista['nome_prof'];
+                }
+    ?>
+    <h2>Lotação do professor: <?php echo $nome; ?></h2>
     <hr>
     <div class="form-group">
         <a class="btn btn-dark" href="<?=URL?>/professor/addLotacaoProfessor/">Adicionar lotação</a>
@@ -20,8 +26,8 @@
                 if(!$dados){
                     echo '<tr><td colspan="5">Registro não localizado!</td></tr>';
                 }else{
-                    foreach($dados as $row){
-                ?>
+                    $total = 0;
+                    foreach ($dados as $row) { $total += $row['ch_sem']; ?>
                 <tr>
                     <td><?php echo $row['turno']; ?></td>
                     <td><?php echo $row['nome_turma']; ?></td>
@@ -29,12 +35,22 @@
                     <td><?php echo $row['ch_sem']; ?></td>
                     <td><?php echo $row['ch_anual']; ?></td>
                     <td>
-                        <a href="">Editar</a>
-                        <a href="">Deletar</a>
+                        <a class="btn btn-outline-danger" href="<?=URL?>/professor/removerLotacao/&id_disc=<?php echo $row['id_disc']; ?>&id_prof=<?php echo $row['id_prof']; ?>">Deletar</a>
                     </td>
                 </tr>
-                <?php } } ?>
+                <?php } }?>
             </tbody>
         </table>
+        <?php echo "<b>C.H. Semanal: </b>" . $total; ?>
     </div>
+    <?php } else { ?>
+    <div class="alert alert-danger">
+        Não há lotação informada!
+        <a class="btn btn-danger" href="<?=URL?>/professor/listarProfessor/">Voltar</a>
+    </div>
+    <?php } ?>
 </div>
+<br>
+<br>
+<br>
+<br>
