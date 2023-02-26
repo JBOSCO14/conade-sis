@@ -39,7 +39,7 @@ class Professor{
             $dados = LotacaoDao::findDisciplinaById($id_turma);
             for ($i = 0; $i < count($dados); $i++) {
             // devolvendo a linha HTML para o javascript e montar no append
-                echo "<option value='" . $dados[$i]['id'] . "' >" . $dados[$i]['componente_curricular'] . "</option>";
+                echo "<option value='" . $dados[$i]['id'] . "' >" . $dados[$i]['componente_curricular'] . " (" . $dados[$i]['sigla'] . ") " . "</option>";
             }
         }
     }

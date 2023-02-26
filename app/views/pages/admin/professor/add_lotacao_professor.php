@@ -51,19 +51,22 @@ use app\models\TurmaDao;
     </form>
     <script src="<?=JQUERY?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-		
+        
 <script type="text/javascript">
 //quando o valor da combo de estado alterar ele vai executar essa linha
     $('#id_turma').change(function () {
-	//armazenando o valor do codigo do estado
+    //armazenando o valor do codigo do estado
         var valor = document.getElementById("id_turma").value;
-		//chamada da controller e passando o ID estado via GET
+        //chamada da controller e passando o ID estado via GET
         $.get('<?=URL?>/professor/getDisciplinaProf/&search=' + valor, function (data) {
-		//procurando a tag OPTION com id da cidade e removendo 
+        //procurando a tag OPTION com id da cidade e removendo 
             $('#id_disc').find("option").remove();
-			//motando a combo da cidade
+            //motando a combo da cidade
             $('#id_disc').append(data);
         });
     });
 </script>
 </div>
+<br>
+<br>
+

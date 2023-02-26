@@ -24,4 +24,5 @@ class ProfessorDao {
         $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
         return $resultado;
     }
+
 }
