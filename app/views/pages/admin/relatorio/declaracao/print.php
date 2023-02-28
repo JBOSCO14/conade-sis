@@ -1,4 +1,7 @@
 <style>
+    *{
+        margin-top: 5px;
+    }
     .logo{
         text-align: center;
         vertical-align: middle;
@@ -7,6 +10,7 @@
         text-align: center;
         font-size: 12px;
         margin-bottom: 0px;
+        margin-top: 0px;
         font-family: Arial, Helvetica, sans-serif;
     }
     .div0{
@@ -25,7 +29,7 @@
         font-weight: bold;
         margin-bottom: 0px;
         text-align: center;
-        margin-top: 10px;
+        margin-top: 5px;
         font-family: Arial, Helvetica, sans-serif;
     }
     .div1{
@@ -164,7 +168,7 @@
         font-size: 14px;
         display: block;
         margin-bottom: 0px;
-        margin-top: 10px;
+        margin-top: 5px;
     }
     .p-body-1{
         width: 100%;
@@ -202,17 +206,20 @@
     .txt-span{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
-        margin-top: 20px;
+        margin-top: 10px;
+        margin-bottom: 0px;
     }
     .txt-span-2{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
-        margin-top: 20px;
+        margin-top: 5px;
+        margin-bottom: 0px;
     }
     .txt-span-3{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 12px;
-        margin-top: 10px;
+        margin-top: 0px;
+        margin-bottom: 5px;
         text-align: right;
     }
     .p-sign{
@@ -229,7 +236,7 @@
         font-size: 12px;
         font-weight: bold;
         text-align: center;
-        margin-top: 0px;
+        margin-top: 5px;
         margin-bottom: 0px;
     }
     .options{
@@ -315,6 +322,8 @@ if($dados){
                             <br />
                             <div class="checkZ"></div>
                             <br />
+                            <div class="checkZ"></div>
+                            <br />
                         </td>
                         <td class="td2">
                             Concluiu o Ensino Fundamental.
@@ -322,6 +331,8 @@ if($dados){
                             Solicitou nesta data sua transferência para outra Unidade Escolar com direito a matricular-se no(a) ___________________________________________. A transferência será entregue no prazo de 30 dias.
                             <br />
                             Tem frequentado até a presente data.
+                            <br />
+                            Frequentou normalmente as aulas até ____/____/_______.
                             <br />
                         </td>
                     </tr>
@@ -398,9 +409,7 @@ if($dados){
 
     <div class="form-group">
         <div>
-        <p class="p-header4"><span><b>Obs.:</b></span></p> 
-        <div class="obs">____________________________________________________________________________________________________</div>
-        <div class="obs">____________________________________________________________________________________________________</div>
+        <p class="p-header4"><span>Obs.:___________________________________________________________________________________</span></p> 
         </div>
     </div>
 
@@ -425,7 +434,6 @@ if($dados){
 
     <div class="form-group">
         <footer class="foot">
-            <hr>
             <p class="p-sign2">Forquilha, Rodovia BR 304 Km 20 sn - CEP: 62840-000 - Beberibe - CE</p>
             <p class="p-sign2">E-mail: esaobernardo@gmail.com</p>
         </footer>

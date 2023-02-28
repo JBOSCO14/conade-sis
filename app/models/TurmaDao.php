@@ -222,4 +222,35 @@ class TurmaDao{
         }
     }
 
+    public static function getTurmasByCod($id){
+        
+        $sql = "SELECT
+        ent.id_ent,
+        ent.id_aluno,
+        ent.id_turma,
+        ent.numero,
+        alu.id,
+        alu.nome,
+        tur.id,
+        tur.nome_turma,
+        tur.turno,
+        tur.nivel,
+        tur.etapa,
+        ent.anoletivo FROM enturmacao ent
+        INNER JOIN cad_aluno alu ON ent.id_aluno = alu.id
+        INNER JOIN turma tur ON ent.id_turma = tur.id
+        WHERE ent.id_turma = :id_turma ORDER BY alu.nome, ent.numero";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':id_turma', $id);
+        $query->execute();
+
+        $count = $query->rowCount();
+        if($count > 0) {
+        $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
+        return $resultado;
+        }
+    }
 }

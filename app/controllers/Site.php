@@ -31,4 +31,9 @@ class Site {
         View::render('pages/admin/painel/painel_relatorio');
     }
 
+    public function painelAcademico(){
+        Login::requireLogin();
+        View::render('pages/admin/painel/painel_academico');
+    }
+
 }

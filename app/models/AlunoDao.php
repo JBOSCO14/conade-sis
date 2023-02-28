@@ -273,4 +273,159 @@ class AlunoDao{
             return $resultado;
         }
     }
+
+    public static function insertAtestado(){
+
+        $id_aluno = filter_input(INPUT_POST, 'id_aluno', FILTER_SANITIZE_NUMBER_INT);
+        $data_ini = filter_input(INPUT_POST, 'data_ini', FILTER_SANITIZE_SPECIAL_CHARS);
+        $dias = filter_input(INPUT_POST, 'dias', FILTER_SANITIZE_NUMBER_INT);
+        $data_fim = filter_input(INPUT_POST, 'data_fim', FILTER_SANITIZE_SPECIAL_CHARS);
+        $cid = mb_strtoupper(filter_input(INPUT_POST, 'cid', FILTER_SANITIZE_SPECIAL_CHARS));
+        $anoletivo = date('Y');
+        $data_cad = date('Y-m-d H:i:s');
+
+        $sql = "INSERT INTO cad_atestado (id_aluno, data_ini, dias, data_fim, cid, anoletivo, data_cad) VALUES (:id_aluno, :data_ini, :dias, :data_fim, :cid, :anoletivo, :data_cad)";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':id_aluno', $id_aluno);
+        $query->bindValue(':data_ini', $data_ini);
+        $query->bindValue(':dias', $dias);
+        $query->bindValue(':data_fim', $data_fim);
+        $query->bindValue(':cid', $cid);
+        $query->bindValue(':anoletivo', $anoletivo);
+        $query->bindValue(':data_cad', $data_cad);
+        $query->execute();
+
+        $count = $query->rowCount();
+
+        if($count === 1){
+            return true;
+        }else{
+            throw new \PDOException ("FALHA NA GRAVAÇÃO DE DADOS!");
+            return false;
+        }
+    }
+
+    public static function buscarAtestados(){
+
+        $anoletivo = date('Y');
+
+        $sql = "SELECT
+        atest.id_doc,
+        atest.id_aluno,
+        atest.data_ini,
+        atest.dias,
+        atest.data_fim,
+        atest.cid,
+        atest.data_cad,
+        alu.id,
+        alu.nome,
+        alu.datanasc,
+        alu.sexo,
+        alu.nome_mae,
+        atest.anoletivo FROM cad_atestado atest
+        INNER JOIN cad_aluno alu ON atest.id_aluno = alu.id
+        WHERE atest.anoletivo = :anoletivo ORDER BY atest.data_cad DESC";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':anoletivo', $anoletivo);
+        $query->execute();
+
+        $count = $query->rowCount();
+
+        if($count > 0){
+            $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+    }
+
+    public static function buscarAtestadoByIdAluno($id){
+        $sql = "SELECT
+        atest.id_doc,
+        atest.id_aluno,
+        atest.data_ini,
+        atest.dias,
+        atest.data_fim,
+        atest.cid,
+        atest.data_cad,
+        alu.id,
+        alu.nome,
+        alu.datanasc,
+        alu.sexo,
+        alu.nome_mae,
+        atest.anoletivo FROM cad_atestado atest
+        INNER JOIN cad_aluno alu ON atest.id_aluno = alu.id
+        WHERE atest.id_aluno = :id_aluno ORDER BY atest.data_cad DESC";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':id_aluno', $id);
+        $query->execute();
+
+        $count = $query->rowCount();
+
+        if($count > 0){
+            $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+    }
+
+    public static function buscarAtestadoByIdDoc($id){
+        $sql = "SELECT
+        atest.id_doc,
+        atest.id_aluno,
+        atest.data_ini,
+        atest.dias,
+        atest.data_fim,
+        atest.cid,
+        atest.data_cad,
+        alu.id,
+        alu.nome,
+        alu.datanasc,
+        alu.sexo,
+        alu.nome_mae,
+        atest.anoletivo FROM cad_atestado atest
+        INNER JOIN cad_aluno alu ON atest.id_aluno = alu.id
+        WHERE atest.id_doc = :id";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':id', $id);
+        $query->execute();
+
+        $count = $query->rowCount();
+
+        if($count > 0){
+            $resultado = $query->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+    }
+
+    public static function deletarAtestadoById(){
+
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+        $sql = "DELETE FROM cad_atestado WHERE id_doc = :id";
+
+        $con = Database::getConnection();
+
+        $query = $con->prepare($sql);
+        $query->bindValue(':id', $id);
+        $query->execute();
+
+        $count = $query->rowCount();
+
+        if($count === 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

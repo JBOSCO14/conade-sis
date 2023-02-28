@@ -3,6 +3,7 @@ namespace app\controllers;
 
 use app\lib\View;
 use app\models\AlunoDao;
+use app\models\TurmaDao;
 
 class Aluno{
 
@@ -76,4 +77,80 @@ class Aluno{
         $dados = AlunoDao::getAlunoId($id);
         View::render('pages/admin/aluno/remover_aluno',$dados);
     }
+
+    public function atestados(){
+        Login::requireLogin();
+        $dados = array();
+        $dados = TurmaDao::read();
+        //echo "<pre>"; print_r($dados); echo "</pre>"; exit;
+        View::render('pages/admin/aluno/controle_atestado',$dados);
+    }
+
+    public function selectTurmasByCod(){
+        if (isset($_GET['search'])) {
+            $id = $_GET['search'];
+            $dados = array();
+            $dados = TurmaDao::getTurmasByCod($id);
+            for ($i = 0; $i < count($dados); $i++) {
+            // devolvendo a linha HTML para o javascript e montar no append
+                echo "<option value='" . $dados[$i]['id_aluno'] . "' >" . $dados[$i]['nome'] . "</option>";
+            }
+        }
+    }
+
+    public function inserirAtestado(){
+        //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
+        try {
+            AlunoDao::insertAtestado($_POST);
+            echo '<script>alert("REGISTRO GRAVADO COM SUCESSO!");</script>';
+            echo '<script>location.href=" '. URL. '/aluno/listarAtestados/"</script>';
+        } catch (\PDOException $e) {
+            echo '<script>alert(" '. $e->getMessage().'");</script>';
+            echo '<script>location.href=" '. URL. '/aluno/atestados/"</script>';
+        }
+    }
+
+    public function listarAtestados() {
+        Login::requireLogin();
+        $dados = array();
+        $dados = AlunoDao::buscarAtestados();
+        //echo "<pre>"; print_r($dados); echo "</pre>"; exit;
+        View::render('pages/admin/aluno/listar_atestado',$dados);
+    }
+
+    public function filtrarAtestado(){
+        //echo "<pre>"; print_r($_GET); echo "</pre>"; exit;
+        if(isset($_GET['id_aluno'])){
+            $id = $_GET['id_aluno'];
+        }
+        Login::requireLogin();
+        $dados = array();
+        $dados = AlunoDao::buscarAtestadoByIdAluno($id);
+        View::render('pages/admin/aluno/filtrar_atestado_aluno',$dados);
+    }
+
+    public function excluirAtestado(){
+        //echo "<pre>"; print_r($_GET); echo "</pre>"; exit;
+        if(isset($_GET['id_doc'])){
+            $id = $_GET['id_doc'];
+        }
+        Login::requireLogin();
+        $dados = array();
+        $dados = AlunoDao::buscarAtestadoByIdDoc($id);
+        View::render('pages/admin/aluno/deletar_atestado_aluno',$dados);
+    }
+
+    public function deletarAtestado(){
+        //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
+        try {
+            AlunoDao::deletarAtestadoById($_POST);
+            echo '<script>alert("REGISTRO DELETADO COM SUCESSO!");</script>';
+            echo '<script>location.href=" '. URL. '/aluno/listarAtestados/"</script>';
+        } catch (\PDOException $e) {
+            echo '<script>alert(" '. $e->getMessage().'");</script>';
+            echo '<script>location.href=" '. URL. '/aluno/listarAtestados/"</script>';
+        }
+    }
+
+
 }

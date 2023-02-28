@@ -29,7 +29,7 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="<?=URL?>/site/painelCadastro/">Cadastro</a>
                     <a class="nav-link active" aria-current="page" href="<?=URL?>/site/painelConsulta/">Consulta</a>
-                    <a class="nav-link active" aria-current="page" href="#">Acadêmico</a>
+                    <a class="nav-link active" aria-current="page" href="<?=URL?>/site/painelAcademico/">Acadêmico</a>
                     <a class="nav-link active" aria-current="page" href="<?=URL?>/site/painelRelatorio/">Relatório</a>
                     <a class="nav-link active" aria-current="page" href="<?=URL?>/usuario/cadastrar/">Sistema</a>
                     <a class="nav-link active" aria-current="page" href="<?=URL?>/login/logout/">Sair</a>
