@@ -63,3 +63,6 @@ $tipoMov = $_SESSION['tipo_mov'];
     }
     </script>
 </div>
+<br>
+<br>
+<br>
