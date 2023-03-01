@@ -96,7 +96,7 @@ style='font-size:10.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
   <p class=MsoNoSpacing style='line-height:115%'><b><span style='font-size:
   10.0pt;line-height:115%;font-family:"Arial",sans-serif'>Data de Nascimento</span></b><span
   style='font-size:10.0pt;line-height:115%;font-family:"Arial",sans-serif'>:
-    <?php echo date('d/m/Y',strtotime($row['nome'])); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+    <?php echo date('d/m/Y',strtotime($row['datanasc'])); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
   </td>
   <td width=198 colspan=2 style='width:148.85pt;border-top:none;border-left:
   none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;

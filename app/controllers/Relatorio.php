@@ -15,6 +15,11 @@ class Relatorio{
         View::render('pages/admin/relatorio/frequencia/seleciona_turma');
     }
 
+    public function selecionaTurmaFichaNota(){
+        Login::requireLogin();
+        View::render('pages/admin/relatorio/frequencia/seleciona_turma_nota');
+    }
+
     public function buscarTurma(){
         //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
         $dados = array();
@@ -30,6 +35,14 @@ class Relatorio{
         View::render('pages/admin/relatorio/frequencia/frequencia_sala',$dados);
     }
 
+    public function getTurmaSelecionadaFichaNota(){
+        //echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
+        Login::requireLogin();
+        $dados = array();
+        $dados = EnturmacaoDao::buscarTurmaId($_POST);
+        View::render('pages/admin/relatorio/frequencia/ficha_notas',$dados);
+    }
+
     public function print(){
         $dados = array();
         $dados = ConsultaDao::reloadTurmaId($_GET['id_turma']);
@@ -42,6 +55,23 @@ class Relatorio{
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         $dompdf->stream("Frequencia_de_sala_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>false));
+        //$dompdf->stream("About.pdf", array("Attachment"=>0));
+        //$fileUpload = $dompdf->output();
+        //return $fileUpload;
+    }
+
+    public function printFichaNota(){
+        $dados = array();
+        $dados = ConsultaDao::reloadTurmaId($_GET['id_turma']);
+        ob_start();
+        View::renderPrinter('pages/admin/relatorio/frequencia/ficha_notas_print',$dados);
+        $page = ob_get_contents();
+        ob_end_clean();
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($page);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("document_" . date('Y-m-d-H-i-s') . "-" . rand() . ".pdf", array("Attachment" =>false));
         //$dompdf->stream("About.pdf", array("Attachment"=>0));
         //$fileUpload = $dompdf->output();
         //return $fileUpload;
